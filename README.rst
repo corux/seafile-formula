@@ -1,6 +1,6 @@
-=========================
-atlassian-seafile-formula
-=========================
+===============
+seafile-formula
+===============
 
 .. image:: https://travis-ci.org/corux/seafile-formula.svg?branch=master
     :target: https://travis-ci.org/corux/seafile-formula

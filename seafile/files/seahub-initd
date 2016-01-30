@@ -10,7 +10,7 @@
 # Description:       Starts Seahub
 ### END INIT INFO
 
-manage_py=$(readlink -f "{{ config.latest }}/seahub/manage.py")
+manage_py=$(readlink -f "{{ config.latest }}")/seahub/manage.py
 
 function status () {
     if pgrep -f "${manage_py}" 2>/dev/null 1>&2; then

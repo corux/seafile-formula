@@ -11,7 +11,7 @@
 ### END INIT INFO
 
 function status () {
-    if pgrep -f "manage.py run_gunicorn" 2>/dev/null 1>&2; then
+    if pgrep -f "{{ config.current_install }}/seahub/manage.py" 2>/dev/null 1>&2; then
         echo "Seahub is running"
         exit 0
     else

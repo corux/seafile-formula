@@ -1,0 +1,9 @@
+books:
+  - book: "srv/formulas/nginx"
+    git: "https://github.com/saltstack-formulas/nginx-formula.git"
+  - book: "srv/salt/nginx"
+    link: "../formulas/nginx/nginx"
+  - book: "srv/formulas/epel"
+    git: "https://github.com/saltstack-formulas/epel-formula.git"
+  - book: "srv/salt/epel"
+    link: "../formulas/epel/epel"

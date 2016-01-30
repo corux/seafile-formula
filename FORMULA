@@ -1,0 +1,8 @@
+name: seafile
+os: CentOS, Fedora, Debian
+os_family: RedHat, Debian
+version: 201601
+release: 1
+dependencies: epel
+summary: Formula for installing Seafile
+description: Formula for installing Seafile Server and Client

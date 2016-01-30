@@ -1,0 +1,33 @@
+driver:
+  name: docker
+
+platforms:
+  - name: centos-7
+    driver_config:
+      image: corux/centos7-salt
+      cap_add:
+        - SYS_ADMIN
+      run_command: /usr/sbin/init
+  - name: debian-8
+    driver_config:
+      image: debian:8
+
+provisioner:
+  name: salt_solo
+  formula: seafile
+  vendor_path: srv/salt
+  pillars-from-files:
+    seafile.sls: pillar.example
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - seafile
+  state_top:
+    base:
+      "*":
+        - seafile.client
+        - seafile.server
+
+suites:
+  - name: default

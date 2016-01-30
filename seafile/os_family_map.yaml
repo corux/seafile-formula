@@ -1,0 +1,23 @@
+RedHat:
+  seafile:
+    client:
+      repo_key: https://copr-be.cloud.fedoraproject.org/results/pkerling/seafile/pubkey.gpg
+      repo_keyid: 3413633f
+    server:
+      use_systemd: True
+      dependencies:
+        - python-setuptools
+        - python-ldap
+        - python-pillow
+        - sqlite
+Debian:
+  seafile:
+    client:
+      url: https://bintray.com/artifact/download/seafile-org/seafile/seafile_5.0.1_amd64.deb
+    server:
+      use_systemd: False
+      dependencies:
+        - python-setuptools
+        - python-ldap
+        - python-imaging
+        - sqlite3

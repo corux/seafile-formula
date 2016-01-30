@@ -1,0 +1,15 @@
+seafile:
+  server:
+    version: 5.0.4
+    flavour: x86-64
+    dir: /opt/seafile
+    user: seafile
+    group: seafile
+    upgrade: minor-upgrade.sh
+    config:
+      name: Seafile
+      domain: seafile.example.com
+      admin: seafile@example.com
+      password: SecretPassword
+      seahub_fastcgi: true
+      seahub_port: "8000"

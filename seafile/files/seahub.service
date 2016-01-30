@@ -1,0 +1,14 @@
+[Unit]
+Description=Seafile hub
+Wants=network-online.target
+After=seafile.service
+
+[Service]
+ExecStart={{ config.latest }}/seahub.sh {{ config.seahub_startcmd }}
+ExecStop={{ config.latest }}/seahub.sh stop
+User={{ config.user }}
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

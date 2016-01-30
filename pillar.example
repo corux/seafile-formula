@@ -1,0 +1,5 @@
+seafile:
+  server:
+    version: 5.0.4
+    config:
+      seahub_fastcgi: False

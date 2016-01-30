@@ -10,8 +10,10 @@
 # Description:       Starts Seahub
 ### END INIT INFO
 
+manage_py=$(readlink -f "{{ config.latest }}/seahub/manage.py")
+
 function status () {
-    if pgrep -f "{{ config.current_install }}/seahub/manage.py" 2>/dev/null 1>&2; then
+    if pgrep -f "${manage_py}" 2>/dev/null 1>&2; then
         echo "Seahub is running"
         exit 0
     else

@@ -104,9 +104,6 @@ seahub-graceful-down:
     - prereq:
       - file: seafile-install
       - cmd: seafile-setup
-{%- if server.get('upgrade') %}
-      - cmd: seafile-upgrade
-{%- endif %}
 
 seafile-graceful-down:
   service.dead:
@@ -114,9 +111,6 @@ seafile-graceful-down:
     - prereq:
       - file: seafile-install
       - cmd: seafile-setup
-{%- if server.get('upgrade') %}
-      - cmd: seafile-upgrade
-{%- endif %}
 
 seafile-download:
   cmd.run:
@@ -139,7 +133,7 @@ seafile-install:
 
   file.symlink:
     - name: {{ server.latest }}
-    - target: {{ server.current_install }}
+    - target: seafile-server-{{ server.version }}
     - require:
       - archive: seafile-install
 
@@ -227,4 +221,7 @@ seafile-upgrade:
     - watch_in:
       - service: seafile
       - service: seahub
+    - prereq_in:
+      - service: seafile-graceful-down
+      - service: seahub-graceful-down
 {% endif %}

@@ -11,6 +11,7 @@ platforms:
   - name: debian-8
     driver_config:
       image: debian:8
+      provision_command: apt-get install -y net-tools
 
 provisioner:
   name: salt_solo

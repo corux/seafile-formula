@@ -10,7 +10,7 @@
 
 {% if server.flavour == 'x86-64' or server.flavour == 'i386' %}
 {% set url = 'https://bintray.com/artifact/download/seafile-org/seafile/seafile-server_' + server.version + '_' + server.flavour + '.tar.gz' %}
-{% elif seafile.server.flavour == 'rpi' %}
+{% elif server.flavour == 'rpi' %}
 {% set url = 'https://github.com/haiwen/seafile-rpi/releases/download/v' + server.version + '/seafile-server_stable_' + server.version + '_pi.tar.gz' %}
 {% endif %}
 

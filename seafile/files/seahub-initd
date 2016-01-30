@@ -4,8 +4,8 @@
 # Provides:          seahub
 # Required-Start:    $local_fs $remote_fs $network seafile
 # Required-Stop:     $local_fs
-# Default-Start:     1 2 3 4 5
-# Default-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
 # Short-Description: Starts Seahub
 # Description:       Starts Seahub
 ### END INIT INFO

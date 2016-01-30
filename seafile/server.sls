@@ -181,7 +181,7 @@ seafile-setup:
         spawn ./seafile.sh stop
         expect eof
 
-  cmd.wait:
+  cmd.run:
     - cwd: {{ server.current_install }}
     - name: /tmp/seafile-setup.sh
     - user: {{ server.user }}
@@ -189,7 +189,7 @@ seafile-setup:
     - require:
       - pkg: autoexpect
       - file: seafile-setup
-    - watch:
+    - onchanges:
       - archive: seafile-install
     - require_in:
       - file: seafile-install
@@ -206,7 +206,7 @@ seafile-upgrade:
         send "\n"
         expect eof
 
-  cmd.wait:
+  cmd.run:
     - cwd: {{ server.current_install }}
     - name: /tmp/seafile-upgrade.sh
     - user: {{ server.user }}
@@ -214,7 +214,7 @@ seafile-upgrade:
       - pkg: autoexpect
       - file: seafile-upgrade
       - cmd: seafile-setup
-    - watch:
+    - onchanges:
       - archive: seafile-install
     - require_in:
       - file: seafile-install

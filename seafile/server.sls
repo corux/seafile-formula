@@ -30,12 +30,10 @@ seafile:
     - defaults:
         config: {{ server }}
 
-  module.wait:
+  module.run:
     - name: service.systemctl_reload
-    - watch:
+    - onchanges:
       - file: seafile
-    - require_in:
-      - service: seafile-graceful-down
 {% else %}
   file.managed:
     - name: /etc/init.d/seafile
@@ -44,15 +42,11 @@ seafile:
     - template: jinja
     - defaults:
         config: {{ server }}
-    - require:
-      - archive: seafile-install
 
-  cmd.wait:
+  cmd.run:
     - name: update-rc.d seafile defaults
-    - watch:
+    - onchanges:
       - file: seafile
-    - require_in:
-      - service: seafile-graceful-down
 {% endif %}
 
 seahub:
@@ -73,12 +67,10 @@ seahub:
     - defaults:
         config: {{ server }}
 
-  module.wait:
+  module.run:
     - name: service.systemctl_reload
-    - watch:
+    - onchanges:
       - file: seahub
-    - require_in:
-      - service: seahub-graceful-down
 {% else %}
   file.managed:
     - name: /etc/init.d/seahub
@@ -87,30 +79,24 @@ seahub:
     - template: jinja
     - defaults:
         config: {{ server }}
-    - require:
-      - archive: seafile-install
 
-  cmd.wait:
+  cmd.run:
     - name: update-rc.d seahub defaults
-    - watch:
+    - onchanges:
       - file: seahub
-    - require_in:
-      - service: seahub-graceful-down
 {% endif %}
 
 seahub-graceful-down:
   service.dead:
     - name: seahub
     - prereq:
-      - file: seafile-install
-      - cmd: seafile-setup
+      - archive: seafile-install
 
 seafile-graceful-down:
   service.dead:
     - name: seafile
     - prereq:
-      - file: seafile-install
-      - cmd: seafile-setup
+      - archive: seafile-install
 
 seafile-download:
   cmd.run:
@@ -188,7 +174,4 @@ seafile-upgrade:
     - watch_in:
       - service: seafile
       - service: seahub
-    - prereq_in:
-      - service: seafile-graceful-down
-      - service: seahub-graceful-down
 {% endif %}

@@ -120,6 +120,8 @@ seafile-install:
   file.symlink:
     - name: {{ server.latest }}
     - target: seafile-server-{{ server.version }}
+    - user: {{ server.user }}
+    - group: {{ server.group }}
     - require:
       - archive: seafile-install
 

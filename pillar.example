@@ -3,3 +3,7 @@ seafile:
     version: 5.0.4
     config:
       seahub_fastcgi: False
+    css: |
+      a, a:hover, #header .nav .a:hover, #ls-ch a {
+        color: #eb8205;
+      }

@@ -151,6 +151,33 @@ seafile-setup:
     - require_in:
       - file: seafile-install
 
+seafile-seahub-data:
+  file.directory:
+    - name: {{ server.dir }}/seahub-data/custom
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+
+seafile-seahub-data-symlink:
+  file.symlink:
+    - name: {{ server.current_install }}/seahub/media/custom
+    - target: ../../../seahub-data/custom
+    - require:
+      - file: seafile-seahub-data
+
+{% if server.get('css') %}
+seafile-css:
+  file.managed:
+    - name: {{ server.dir }}/seahub-data/custom/custom.css
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+    - mode: 644
+    - makedirs: True
+    - contents: |
+        {{ server.css|indent(8) }}
+    - require:
+      - file: seafile-seahub-data
+{% endif %}
+
 {% if server.get('upgrade') %}
 seafile-upgrade:
   file.managed:

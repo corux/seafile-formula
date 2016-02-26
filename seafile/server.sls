@@ -156,6 +156,7 @@ seafile-seahub-data:
     - name: {{ server.dir }}/seahub-data/custom
     - user: {{ server.user }}
     - group: {{ server.group }}
+    - makedirs: True
 
 seafile-seahub-data-symlink:
   file.symlink:
@@ -167,7 +168,7 @@ seafile-seahub-data-symlink:
 {% if server.get('css') %}
 seafile-css:
   file.managed:
-    - name: {{ server.dir }}/seahub-data/custom/custom.css
+    - name: {{ server.dir }}/seahub-data/{{ server.seahub_settings.BRANDING_CSS }}
     - user: {{ server.user }}
     - group: {{ server.group }}
     - mode: 644
@@ -177,6 +178,18 @@ seafile-css:
     - require:
       - file: seafile-seahub-data
 {% endif %}
+
+seahub-settings:
+  file.managed:
+    - name: {{ server.dir }}/conf/seahub_settings.py
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+    - mode: 600
+    - makedirs: True
+    - contents: |
+{% for key, value in server.get('seahub_settings', {}).items() -%}
+        {{ key }} = {{ value|json }}
+{% endfor -%}
 
 {% if server.get('upgrade') %}
 seafile-upgrade:

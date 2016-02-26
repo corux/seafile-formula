@@ -3,9 +3,9 @@ spawn ./setup-seafile.sh
 expect "Press \\\[ENTER\\\]"
 send "\n"
 expect "\\\[server name\\\]:"
-send "{{ server.config.name }}\n"
+send "{{ server.setup.name }}\n"
 expect "\\\[This server's ip or domain\\\]:"
-send "{{ server.config.domain }}\n"
+send "{{ server.setup.domain }}\n"
 expect "\\\[default: {{ server.dir }}/seafile-data \\\]"
 send "\n"
 expect "\\\[default: 8082 \\\]"
@@ -21,11 +21,11 @@ expect eof
 
 spawn ./seahub.sh start
 expect "\\\[ admin email \\\]"
-send "{{ server.config.admin }}\n"
+send "{{ server.setup.admin }}\n"
 expect "\\\[ admin password \\\]"
-send "{{ server.config.password }}\n"
+send "{{ server.setup.password }}\n"
 expect "\\\[ admin password again \\\]"
-send "{{ server.config.password }}\n"
+send "{{ server.setup.password }}\n"
 expect "Done."
 
 spawn ./seahub.sh stop

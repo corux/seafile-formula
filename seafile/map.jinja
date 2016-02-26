@@ -23,5 +23,12 @@
   'source': '/tmp/seafile-server-' + server.version + '.tar.gz',
   'current_install': server.dir + '/seafile-server-' + server.version,
   'latest': server.dir + '/seafile-server-latest',
-  'seahub_startcmd': startcmd
+  'seahub_startcmd': startcmd,
+  'seahub_settings': server.get('seahub_settings', {})
 }) %}
+
+{% if server.get('css') %}
+{% do server.seahub_settings.update({
+  'BRANDING_CSS': server.seahub_settings.get('BRANDING_CSS', 'custom/custom.css')
+})}
+{% endif %}

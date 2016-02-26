@@ -7,3 +7,6 @@ seafile:
       a, a:hover, #header .nav .a:hover, #ls-ch a {
         color: #eb8205;
       }
+    seahub_settings:
+      TIME_ZONE: Europe/Berlin
+      ADD_REPLY_TO_HEADER: True

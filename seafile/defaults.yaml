@@ -6,7 +6,7 @@ seafile:
     user: seafile
     group: seafile
     upgrade: minor-upgrade.sh
-    config:
+    setup:
       name: Seafile
       domain: seafile.example.com
       admin: seafile@example.com

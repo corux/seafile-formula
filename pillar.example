@@ -15,3 +15,10 @@ seafile:
     ccnet:
       General:
         SERVICE_URL: http://seafile.example.com
+    seafile:
+      quota:
+        default: 2
+      history:
+        keep_days: 30
+      zip:
+        windows_encoding: iso-8859-1

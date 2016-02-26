@@ -215,6 +215,13 @@ seafile-ccnet:
     - watch_in:
       - service: seafile
 
+seafile-seafile-conf:
+  ini.options_present:
+    - name: {{ server.dir }}/conf/seafile.conf
+    - sections: {{ server.get('seafile', {})|yaml }}
+    - watch_in:
+      - service: seafile
+
 {% if server.get('upgrade') %}
 seafile-upgrade:
   file.managed:

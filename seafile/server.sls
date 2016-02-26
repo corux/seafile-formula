@@ -206,7 +206,14 @@ seahub-settings:
     - contents: |
 {%- for key, value in server.get('seahub_settings', {}).items() %}
         {{ key }} = {{ value|python }}
-{%- endfor -%}
+{%- endfor %}
+
+seafile-ccnet:
+  ini.options_present:
+    - name: {{ server.dir }}/conf/ccnet.conf
+    - sections: {{ server.get('ccnet', {})|yaml }}
+    - watch_in:
+      - service: seafile
 
 {% if server.get('upgrade') %}
 seafile-upgrade:

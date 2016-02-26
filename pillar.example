@@ -12,3 +12,6 @@ seafile:
     seahub_settings:
       TIME_ZONE: Europe/Berlin
       ADD_REPLY_TO_HEADER: True
+    ccnet:
+      General:
+        SERVICE_URL: http://seafile.example.com

@@ -8,6 +8,7 @@ seafile:
         color: #eb8205;
       }
     logo_source: https://www.seafile.com/media/img/logo.png
+    logo_hash: sha1=b3c4a3a618ac8e59ba4702503f4e8d1d4dba6d66
     seahub_settings:
       TIME_ZONE: Europe/Berlin
       ADD_REPLY_TO_HEADER: True

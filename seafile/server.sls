@@ -179,6 +179,22 @@ seafile-css:
       - file: seafile-seahub-data
 {% endif %}
 
+{% if server.get('logo_source') %}
+seafile-logo:
+  file.managed:
+    - name: {{ server.dir }}/seahub-data/{{ server.seahub_settings.LOGO_PATH }}
+    - source: {{ server.logo_source }}
+{%- if server.get('logo_hash') %}
+    - source_hash: {{ server.logo_hash}}
+{%- endif %}
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+    - mode: 644
+    - makedirs: True
+    - require:
+      - file: seafile-seahub-data
+{% endif %}
+
 seahub-settings:
   file.managed:
     - name: {{ server.dir }}/conf/seahub_settings.py
@@ -187,9 +203,9 @@ seahub-settings:
     - mode: 600
     - makedirs: True
     - contents: |
-{% for key, value in server.get('seahub_settings', {}).items() -%}
+{%- for key, value in server.get('seahub_settings', {}).items() %}
         {{ key }} = {{ value|json }}
-{% endfor -%}
+{%- endfor -%}
 
 {% if server.get('upgrade') %}
 seafile-upgrade:

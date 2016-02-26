@@ -30,5 +30,11 @@
 {% if server.get('css') %}
 {% do server.seahub_settings.update({
   'BRANDING_CSS': server.seahub_settings.get('BRANDING_CSS', 'custom/custom.css')
-})}
+}) %}
+{% endif %}
+
+{% if server.get('logo_source') %}
+{% do server.seahub_settings.update({
+  'LOGO_PATH': server.seahub_settings.get('LOGO_PATH', 'custom/' + salt['cmd.run']('basename ' + server.logo_source))
+}) %}
 {% endif %}

@@ -6,10 +6,11 @@ seafile:
     user: seafile
     group: seafile
     upgrade: minor-upgrade.sh
+    config:
+      seahub_fastcgi: true
+      seahub_port: "8000"
     setup:
       name: Seafile
       domain: seafile.example.com
       admin: seafile@example.com
       password: SecretPassword
-      seahub_fastcgi: true
-      seahub_port: "8000"

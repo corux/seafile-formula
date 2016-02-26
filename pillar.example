@@ -7,6 +7,7 @@ seafile:
       a, a:hover, #header .nav .a:hover, #ls-ch a {
         color: #eb8205;
       }
+    logo_source: https://www.seafile.com/media/img/logo.png
     seahub_settings:
       TIME_ZONE: Europe/Berlin
       ADD_REPLY_TO_HEADER: True

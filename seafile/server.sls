@@ -59,6 +59,7 @@ seahub:
       - service: seafile
     - watch:
       - file: seafile-install
+      - file: seahub-settings
 {% if server.use_systemd %}
   file.managed:
     - name: /etc/systemd/system/seahub.service
@@ -204,7 +205,7 @@ seahub-settings:
     - makedirs: True
     - contents: |
 {%- for key, value in server.get('seahub_settings', {}).items() %}
-        {{ key }} = {{ value|json }}
+        {{ key }} = {{ value|python }}
 {%- endfor -%}
 
 {% if server.get('upgrade') %}

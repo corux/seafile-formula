@@ -20,6 +20,10 @@ describe port("8000") do
   it { should be_listening }
 end
 
+describe port("8080") do
+  it { should be_listening }
+end
+
 describe command("curl -L localhost:8000") do
   its(:stdout) { should match /Private Seafile/ }
 end

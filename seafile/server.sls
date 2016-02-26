@@ -222,6 +222,13 @@ seafile-seafile-conf:
     - watch_in:
       - service: seafile
 
+seafile-seafdav:
+  ini.options_present:
+    - name: {{ server.dir }}/conf/seafdav.conf
+    - sections: {{ server.get('seafdav', {})|yaml }}
+    - watch_in:
+      - service: seafile
+
 {% if server.get('upgrade') %}
 seafile-upgrade:
   file.managed:

@@ -11,25 +11,45 @@
 ### END INIT INFO
 
 manage_py=$(readlink -f "{{ config.latest }}")/seahub/manage.py
+seahub_sh={{ config.latest }}/seahub.sh
 
 function status () {
     if pgrep -f "${manage_py}" 2>/dev/null 1>&2; then
-        echo "Seahub is running"
-        exit 0
+        return 0
     else
-        echo "Seahub is not running"
-        exit 1
+        return 1
     fi
+}
+
+function safe_stop () {
+    sudo -u {{ config.user }} ${seahub_sh} stop
+    while status
+    do
+        sleep 0.1s
+    done
 }
 
 case $1 in
     "status" )
-        status;
+        if status ; then
+            echo "Seahub is running"
+            exit 0
+        else
+            echo "Seahub is not running"
+            exit 1
+        fi
         ;;
     "start" )
-        sudo -u {{ config.user }} {{ config.latest }}/seahub.sh {{ config.seahub_startcmd }}
+        sudo -u {{ config.user }} ${seahub_sh} {{ config.seahub_startcmd }}
+        ;;
+    "stop" )
+        safe_stop
+        ;;
+    "restart" )
+        safe_stop
+        sudo -u {{ config.user }} ${seahub_sh} {{ config.seahub_startcmd }}
         ;;
     * )
-        sudo -u {{ config.user }} {{ config.latest }}/seahub.sh $@
+        sudo -u {{ config.user }} ${seahub_sh} $@
         ;;
 esac

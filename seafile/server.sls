@@ -105,6 +105,9 @@ seafile-download:
     - unless: "test -f '{{ server.source }}'"
     - prereq:
       - archive: seafile-install
+    - require_in:
+      - service: seafile-graceful-down
+      - service: seahub-graceful-down
 
 seafile-install:
   archive.extracted:

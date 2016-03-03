@@ -116,8 +116,6 @@ seafile-install:
     - archive_format: tar
     - tar_options: z
     - if_missing: {{ server.current_install }}
-    - user: {{ server.user }}
-    - group: {{ server.group }}
     - require:
       - user: seafile
 
@@ -128,6 +126,20 @@ seafile-install:
     - group: {{ server.group }}
     - require:
       - archive: seafile-install
+      - file: seafile-chmod
+
+seafile-chmod:
+  file.directory:
+    - name: {{ server.current_install }}
+    - user: {{ server.user }}
+    - group: {{ server.group }}
+    - recurse:
+      - user
+      - group
+    - require:
+      - archive: seafile-install
+    - require_in:
+      - file: seafile-install
 
 autoexpect:
   pkg.installed:
@@ -150,6 +162,7 @@ seafile-setup:
     - require:
       - pkg: autoexpect
       - file: seafile-setup
+      - file: seafile-chmod
     - onchanges:
       - archive: seafile-install
     - require_in:
@@ -166,6 +179,8 @@ seafile-seahub-data-symlink:
   file.symlink:
     - name: {{ server.current_install }}/seahub/media/custom
     - target: ../../../seahub-data/custom
+    - user: {{ server.user }}
+    - group: {{ server.group }}
     - require:
       - file: seafile-seahub-data
 
@@ -250,6 +265,7 @@ seafile-upgrade:
       - pkg: autoexpect
       - file: seafile-upgrade
       - cmd: seafile-setup
+      - file: seafile-chmod
     - onchanges:
       - archive: seafile-install
     - require_in:

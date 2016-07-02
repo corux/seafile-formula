@@ -157,7 +157,7 @@ seafile-setup:
   cmd.run:
     - cwd: {{ server.current_install }}
     - name: /tmp/seafile-setup.sh
-    - user: {{ server.user }}
+    - runas: {{ server.user }}
     - unless: test -d {{ server.dir }}/ccnet
     - require:
       - pkg: autoexpect
@@ -260,7 +260,7 @@ seafile-upgrade:
   cmd.run:
     - cwd: {{ server.current_install }}
     - name: /tmp/seafile-upgrade.sh
-    - user: {{ server.user }}
+    - runas: {{ server.user }}
     - require:
       - pkg: autoexpect
       - file: seafile-upgrade

@@ -9,6 +9,7 @@ RedHat:
         - python-setuptools
         - python-ldap
         - python-pillow
+        - python-urllib3
         - sqlite
 Debian:
   seafile:
@@ -20,4 +21,5 @@ Debian:
         - python-setuptools
         - python-ldap
         - python-imaging
+        - python-urllib3
         - sqlite3

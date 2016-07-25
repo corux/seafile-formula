@@ -1,6 +1,6 @@
 seafile:
   server:
-    version: 5.1.3
+    version: 5.1.4
     flavour: x86-64
     dir: /opt/seafile
     user: seafile

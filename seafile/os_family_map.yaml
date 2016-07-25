@@ -14,7 +14,7 @@ RedHat:
 Debian:
   seafile:
     client:
-      url: https://bintray.com/artifact/download/seafile-org/seafile/seafile_5.0.1_amd64.deb
+      url: https://bintray.com/artifact/download/seafile-org/seafile/seafile_5.1.3_amd64.deb
     server:
       use_systemd: False
       dependencies:

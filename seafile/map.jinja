@@ -11,7 +11,7 @@
 {% if server.flavour == 'x86-64' or server.flavour == 'i386' %}
 {% set url = 'https://dl.bintray.com/seafile-org/seafile/seafile-server_' + server.version + '_' + server.flavour + '.tar.gz' %}
 {% elif server.flavour == 'rpi' %}
-{% set url = 'https://github.com/haiwen/seafile-rpi/releases/download/v' + server.version + '/seafile-server_' + server.version + '_stable_pi.tar.gz' %}
+{% set url = 'https://github.com/haiwen/seafile-rpi/releases/download/v' + server.version + '/seafile-server_' + server.version + '_' + server.rpi_type + '_pi.tar.gz' %}
 {% endif %}
 
 {% set startcmd = 'start-fastcgi' if server.config.seahub_fastcgi else 'start' %}

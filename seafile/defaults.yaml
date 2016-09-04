@@ -2,7 +2,7 @@ seafile:
   server:
     version: 6.0.3
     flavour: x86-64
-    rpi_type: beta
+    rpi_type: stable
     dir: /opt/seafile
     user: seafile
     group: seafile

@@ -14,11 +14,12 @@ Available states
     :local:
 
 ``seafile.server``
-------------
+------------------
 
 Installs the Seafile Server.
 
+
 ``seafile.client``
-------------
+------------------
 
 Installs the Seafile Desktop Client.

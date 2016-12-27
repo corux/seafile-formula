@@ -113,8 +113,7 @@ seafile-install:
   archive.extracted:
     - name: {{ server.dir }}
     - source: {{ server.source }}
-    - archive_format: tar
-    - tar_options: z
+    - options: z
     - if_missing: {{ server.current_install }}
     - require:
       - user: seafile

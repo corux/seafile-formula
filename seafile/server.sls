@@ -91,30 +91,29 @@ seahub-graceful-down:
   service.dead:
     - name: seahub
     - prereq:
-      - archive: seafile-install
+      - cmd: seafile-install
 
 seafile-graceful-down:
   service.dead:
     - name: seafile
     - prereq:
-      - archive: seafile-install
+      - cmd: seafile-install
 
 seafile-download:
   cmd.run:
     - name: "curl -L --silent '{{ server.url }}' > '{{ server.source }}'"
     - unless: "test -f '{{ server.source }}'"
     - prereq:
-      - archive: seafile-install
+      - cmd: seafile-install
     - require_in:
       - service: seafile-graceful-down
       - service: seahub-graceful-down
 
 seafile-install:
-  archive.extracted:
-    - name: {{ server.dir }}
-    - source: {{ server.source }}
-    - options: z
-    - if_missing: {{ server.current_install }}
+  cmd.run:
+    - name: "tar -xf '{{ server.source }}'"
+    - cwd: {{ server.dir }}
+    - unless: "test -e '{{ server.current_install }}'"
     - require:
       - user: seafile
 
@@ -124,7 +123,7 @@ seafile-install:
     - user: {{ server.user }}
     - group: {{ server.group }}
     - require:
-      - archive: seafile-install
+      - cmd: seafile-install
       - file: seafile-chmod
 
 seafile-chmod:
@@ -136,7 +135,7 @@ seafile-chmod:
       - user
       - group
     - require:
-      - archive: seafile-install
+      - cmd: seafile-install
     - require_in:
       - file: seafile-install
 
@@ -163,7 +162,7 @@ seafile-setup:
       - file: seafile-setup
       - file: seafile-chmod
     - onchanges:
-      - archive: seafile-install
+      - cmd: seafile-install
     - require_in:
       - file: seafile-install
 
@@ -266,7 +265,7 @@ seafile-upgrade:
       - cmd: seafile-setup
       - file: seafile-chmod
     - onchanges:
-      - archive: seafile-install
+      - cmd: seafile-install
     - require_in:
       - file: seafile-install
     - watch_in:

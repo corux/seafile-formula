@@ -220,6 +220,7 @@ seahub-settings:
     - mode: 600
     - makedirs: True
     - contents: |
+        # -*- coding: utf-8 -*-
 {%- for key, value in server.get('seahub_settings', {}).items() %}
         {{ key }} = {{ value|python }}
 {%- endfor %}

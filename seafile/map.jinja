@@ -32,6 +32,6 @@
 
 {% if server.get('logo_source') %}
 {% do server.seahub_settings.update({
-  'LOGO_PATH': server.seahub_settings.get('LOGO_PATH', 'custom/' + salt['cmd.run']('basename ' + server.logo_source))
+  'LOGO_PATH': server.seahub_settings.get('LOGO_PATH', 'custom/' + salt['cmd.shell']('basename ' + server.logo_source))
 }) %}
 {% endif %}

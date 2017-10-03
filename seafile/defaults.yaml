@@ -1,6 +1,6 @@
 seafile:
   server:
-    version: 6.1.1
+    version: 6.2.2
     flavour: x86-64
     rpi_type: stable
     dir: /opt/seafile

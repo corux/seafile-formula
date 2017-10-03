@@ -14,16 +14,13 @@
 {% set url = 'https://github.com/haiwen/seafile-rpi/releases/download/v' + server.version + '/seafile-server_' + server.version + '_' + server.rpi_type + '_pi.tar.gz' %}
 {% endif %}
 
-{% set startcmd = 'start-fastcgi' if server.config.seahub_fastcgi else 'start' %}
-{% set startcmd = startcmd + ' ' + server.config.seahub_port %}
-
 {% do server.update({
   'url': server.get('url', url),
   'pid': server.dir + '/pids/seaf-server.pid',
   'source': '/tmp/seafile-server-' + server.version + '.tar.gz',
   'current_install': server.dir + '/seafile-server-' + server.version,
   'latest': server.dir + '/seafile-server-latest',
-  'seahub_startcmd': startcmd,
+  'seahub_startcmd': 'start ' + server.config.seahub_port,
   'seahub_settings': server.get('seahub_settings', {})
 }) %}
 

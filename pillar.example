@@ -1,7 +1,7 @@
 seafile:
   server:
     config:
-      seahub_fastcgi: False
+      seahub_port: "8000"
     css: |
       a, a:hover, #header .nav .a:hover, #ls-ch a {
         color: #eb8205;

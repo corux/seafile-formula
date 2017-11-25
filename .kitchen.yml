@@ -26,8 +26,8 @@ provisioner:
   state_top:
     base:
       "*":
-        - seafile.client
         - seafile.server
+#        - seafile.client
 
 suites:
   - name: default

@@ -23,7 +23,7 @@ seafile-repo:
 
 seafile-client:
   pkg.installed:
-    - name: seafile-client-qt
+    - name: {{ client.get('package', 'seafile-client-qt') }}
 {% if client.get('url') %}
     - sources:
       - seafile: {{ client.url }}

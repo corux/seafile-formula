@@ -5,4 +5,4 @@ CentOS:
 Fedora:
   seafile:
     client:
-      repo: https://copr-be.cloud.fedoraproject.org/results/pkerling/seafile/fedora-$releasever-$basearch/
+      package: seafile-client

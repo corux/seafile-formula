@@ -7,7 +7,7 @@ After=seafile.service
 ExecStart={{ config.latest }}/seahub.sh {{ config.seahub_startcmd }}
 ExecStop={{ config.latest }}/seahub.sh stop
 User={{ config.user }}
-Type=oneshot
+Type=forking
 RemainAfterExit=yes
 
 [Install]

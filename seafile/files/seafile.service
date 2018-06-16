@@ -6,7 +6,7 @@ Wants=network-online.target
 ExecStart={{ config.latest }}/seafile.sh start
 ExecStop={{ config.latest }}/seafile.sh stop
 User={{ config.user }}
-Type=oneshot
+Type=forking
 RemainAfterExit=yes
 
 [Install]
